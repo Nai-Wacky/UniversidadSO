@@ -30,27 +30,98 @@ Desmonta la memoria USB:
     sudo umount /mnt/usb
 
 Salidas y comentarios:<br>
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ lsblk
 ```
-ricardo@ricardo-VirtualBox:~$ lsblk
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-loop0    7:0    0  73,9M  1 loop /snap/core22/1663
-loop1    7:1    0     4K  1 loop /snap/bare/5
-loop2    7:2    0  73,9M  1 loop /snap/core22/1722
-loop3    7:3    0   274M  1 loop /snap/firefox/5361
-loop4    7:4    0  11,1M  1 loop /snap/firmware-updater/147
-loop5    7:5    0 269,8M  1 loop /snap/firefox/4793
-loop6    7:6    0 505,1M  1 loop /snap/gnome-42-2204/176
-loop7    7:7    0  10,7M  1 loop /snap/firmware-updater/127
-loop8    7:8    0  91,7M  1 loop /snap/gtk-common-themes/1535
-loop9    7:9    0  38,8M  1 loop /snap/snapd/21759
-loop10   7:10   0  10,7M  1 loop /snap/snap-store/1218
+loop0    7:0    0  73,9M  1 loop /snap/core22/1722
+loop1    7:1    0  73,9M  1 loop /snap/core22/1663
+loop2    7:2    0   274M  1 loop /snap/firefox/5361
+loop3    7:3    0 269,8M  1 loop /snap/firefox/4793
+loop4    7:4    0     4K  1 loop /snap/bare/5
+loop5    7:5    0  11,1M  1 loop /snap/firmware-updater/147
+loop6    7:6    0  10,7M  1 loop /snap/firmware-updater/127
+loop7    7:7    0 505,1M  1 loop /snap/gnome-42-2204/176
+loop8    7:8    0  10,7M  1 loop /snap/snap-store/1218
+loop9    7:9    0  91,7M  1 loop /snap/gtk-common-themes/1535
+loop10   7:10   0  38,8M  1 loop /snap/snapd/21759
 loop11   7:11   0  44,3M  1 loop /snap/snapd/23258
 loop12   7:12   0   568K  1 loop /snap/snapd-desktop-integration/253
 loop13   7:13   0   500K  1 loop /snap/snapd-desktop-integration/178
 sda      8:0    0    25G  0 disk 
 ├─sda1   8:1    0     1M  0 part 
 └─sda2   8:2    0    25G  0 part /
-sr0     11:0    1  1024M  0 rom 
+sdb      8:16   1   250G  0 disk 
+└─sdb1   8:17   1   250G  0 part /media/ricardo/76E8-CACF
+sr0     11:0    1  1024M  0 rom  
+```
+La memoria USB es sdb1 con 250 GB
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ sudo mount /dev/sdb1 /media/usb <br>
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ lsblk
+
+```
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0    7:0    0  73,9M  1 loop /snap/core22/1722
+loop1    7:1    0  73,9M  1 loop /snap/core22/1663
+loop2    7:2    0   274M  1 loop /snap/firefox/5361
+loop3    7:3    0 269,8M  1 loop /snap/firefox/4793
+loop4    7:4    0     4K  1 loop /snap/bare/5
+loop5    7:5    0  11,1M  1 loop /snap/firmware-updater/147
+loop6    7:6    0  10,7M  1 loop /snap/firmware-updater/127
+loop7    7:7    0 505,1M  1 loop /snap/gnome-42-2204/176
+loop8    7:8    0  10,7M  1 loop /snap/snap-store/1218
+loop9    7:9    0  91,7M  1 loop /snap/gtk-common-themes/1535
+loop10   7:10   0  38,8M  1 loop /snap/snapd/21759
+loop11   7:11   0  44,3M  1 loop /snap/snapd/23258
+loop12   7:12   0   568K  1 loop /snap/snapd-desktop-integration/253
+loop13   7:13   0   500K  1 loop /snap/snapd-desktop-integration/178
+sda      8:0    0    25G  0 disk 
+├─sda1   8:1    0     1M  0 part 
+└─sda2   8:2    0    25G  0 part /
+sdb      8:16   1   250G  0 disk 
+└─sdb1   8:17   1   250G  0 part /media/usb
+sr0     11:0    1  1024M  0 rom  
+```
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ df -h
+```
+S.ficheros     Tamaño Usados  Disp Uso% Montado en
+tmpfs            392M   1,7M  390M   1% /run
+/dev/sda2         25G    13G   12G  52% /
+tmpfs            2,0G    33M  1,9G   2% /dev/shm
+tmpfs            5,0M   8,0K  5,0M   1% /run/lock
+tmpfs            392M   2,5M  390M   1% /run/user/1000
+/dev/sdb1        250G   1,9M  250G   1% /media/usb
+```
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ sudo cp archivo.txt /media/usb/
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ sudo umount /media/usb
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ lsblk
+```
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0    7:0    0  73,9M  1 loop /snap/core22/1722
+loop1    7:1    0  73,9M  1 loop /snap/core22/1663
+loop2    7:2    0   274M  1 loop /snap/firefox/5361
+loop3    7:3    0 269,8M  1 loop /snap/firefox/4793
+loop4    7:4    0     4K  1 loop /snap/bare/5
+loop5    7:5    0  11,1M  1 loop /snap/firmware-updater/147
+loop6    7:6    0  10,7M  1 loop /snap/firmware-updater/127
+loop7    7:7    0 505,1M  1 loop /snap/gnome-42-2204/176
+loop8    7:8    0  10,7M  1 loop /snap/snap-store/1218
+loop9    7:9    0  91,7M  1 loop /snap/gtk-common-themes/1535
+loop10   7:10   0  38,8M  1 loop /snap/snapd/21759
+loop11   7:11   0  44,3M  1 loop /snap/snapd/23258
+loop12   7:12   0   568K  1 loop /snap/snapd-desktop-integration/253
+loop13   7:13   0   500K  1 loop /snap/snapd-desktop-integration/178
+sda      8:0    0    25G  0 disk 
+├─sda1   8:1    0     1M  0 part 
+└─sda2   8:2    0    25G  0 part /
+sdb      8:16   1   250G  0 disk 
+└─sdb1   8:17   1   250G  0 part 
+sr0     11:0    1  1024M  0 rom  
 ```
 
 
@@ -386,5 +457,66 @@ Unidades: sectores de 1 * 512 = 512 bytes
 Tamaño de sector (lógico/físico): 512 bytes / 512 bytes
 Tamaño de E/S (mínimo/óptimo): 512 bytes / 512 bytes
 ```
+```
+Disco /dev/sdb: 250 GiB, 268435456000 bytes, 524288000 sectores
+Disk model: ProductCode     
+Unidades: sectores de 1 * 512 = 512 bytes
+Tamaño de sector (lógico/físico): 512 bytes / 512 bytes
+Tamaño de E/S (mínimo/óptimo): 512 bytes / 512 bytes
+Tipo de etiqueta de disco: dos
+Identificador del disco: 0xfa2cb833
+
+Dispositivo Inicio Comienzo     Final  Sectores Tamaño Id Tipo
+/dev/sdb1              2048 104857600 104855553    50G 83 Linux
+```
 
 
+
+<font color="green">**ricardo@ricardo-VirtualBox**</font>:~$ sudo mkfs.ext4 /dev/sdb1
+```
+mke2fs 1.47.0 (5-Feb-2023)
+Se está creando un sistema de ficheros con 13106944 bloques de 4k y 3276800 nodos-i
+UUID del sistema de ficheros: 3b6fa4a0-a5c4-45ed-a488-9cccd09c0e01
+Respaldos del superbloque guardados en los bloques: 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+	4096000, 7962624, 11239424
+
+Reservando las tablas de grupo: hecho                            
+Escribiendo las tablas de nodos-i: hecho                            
+Creando el fichero de transacciones (65536 bloques):hecho
+Escribiendo superbloques y la información contable del sistema de archivos: hecho  
+```
+
+Por ultimo montamos la USB y hacemos una prueba creando un archivo
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ sudo mount /dev/sdb1 /media/usb <br>
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ lsblk
+
+```
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0    7:0    0  73,9M  1 loop /snap/core22/1722
+loop1    7:1    0  73,9M  1 loop /snap/core22/1663
+loop2    7:2    0   274M  1 loop /snap/firefox/5361
+loop3    7:3    0 269,8M  1 loop /snap/firefox/4793
+loop4    7:4    0     4K  1 loop /snap/bare/5
+loop5    7:5    0  11,1M  1 loop /snap/firmware-updater/147
+loop6    7:6    0  10,7M  1 loop /snap/firmware-updater/127
+loop7    7:7    0 505,1M  1 loop /snap/gnome-42-2204/176
+loop8    7:8    0  10,7M  1 loop /snap/snap-store/1218
+loop9    7:9    0  91,7M  1 loop /snap/gtk-common-themes/1535
+loop10   7:10   0  38,8M  1 loop /snap/snapd/21759
+loop11   7:11   0  44,3M  1 loop /snap/snapd/23258
+loop12   7:12   0   568K  1 loop /snap/snapd-desktop-integration/253
+loop13   7:13   0   500K  1 loop /snap/snapd-desktop-integration/178
+sda      8:0    0    25G  0 disk 
+├─sda1   8:1    0     1M  0 part 
+└─sda2   8:2    0    25G  0 part /
+sdb      8:16   1   250G  0 disk 
+└─sdb1   8:17   1   50G   0 part /media/usb
+sr0     11:0    1  1024M  0 rom  
+```
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ echo "Prueba de escritura" > /media/usb/test.txt
+
+<font color="green">ricardo@ricardo-VirtualBox</font>:~$ cat /media/usb/test.txt <br>
+Prueba de escritura
