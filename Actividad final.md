@@ -389,4 +389,15 @@ Tareas:
 
  * Simula el proceso de cifrado y descifrado de un archivo con una clave
  dada.
-    * 
+    * Para el cifrado utilice OpenSSL en Linux. El archivo que se cifró es archivo.txt, este archivo se cifró usando como contraseña otro archivo llamado clave.key, y el comando es el siguiente: <br>
+    ```
+    openssl enc -aes-256-cbc -salt -in archivo.txt -out archivo_cifrado.txt -pass file:./clave.key -pbkdf2
+    ```
+
+    [Archivo cifrado](https://photos.app.goo.gl/QnH45JJt2kFRXU28A)
+
+    El comando que utilizariamos para desencriptarlo es el siguiente:
+
+    ```
+    openssl enc -d -aes-256-cbc -in archivo_encriptado.txt -out datos_descifrados.txt -pass file:./clave.key -pbkdf2
+    ```
